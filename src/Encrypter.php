@@ -4,8 +4,8 @@
  * PHP Encrypter
  * Safety against scripts injections
  * Generates an encrypted hash of 148 byte
- * @link https://github.com/lleocastro/php-helpers
- * @license https://github.com/lleocastro/php-helpers/blob/master/LICENSE
+ * @link https://github.com/lleocastro/php-encrypter
+ * @license https://github.com/lleocastro/php-encrypter/blob/master/LICENSE
  * @copyright 2016 Leonardo Carvalho <leonardo_carvalho@outlook.com>
  */
 
