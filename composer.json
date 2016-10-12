@@ -1,0 +1,22 @@
+{
+    "name": "PHP Encrypter",
+    "description": "Generates an encrypted hash of 148 byte.",
+    "authors": [
+        {
+            "name": "Leonardo Carvalho",
+            "email": "leonardo_carvalho@outlook.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "require": {
+        "php": ">=5.2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+            "Tests\\": "tests/"
+        }
+    }
+}
