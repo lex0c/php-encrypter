@@ -94,7 +94,7 @@ class Encrypter
      * Generate a random salt
      * @return string
     */
-	private function generateSalt() 
+	protected function generateSalt() 
 	{
 		return substr(base64_encode(uniqid(mt_rand(), true)), 0, 22);
 	}
