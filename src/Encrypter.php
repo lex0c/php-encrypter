@@ -63,7 +63,7 @@ class Encrypter
     */
     public function generate($value)
     {
-        return strrev($this->inverse(
+        return strrev($this->build(
             crypt(
         	    (string) trim(htmlentities(strrev($value))), 
         	    $this->generateHash()
@@ -109,20 +109,24 @@ class Encrypter
 
 
     /**
-     * Build a hard hash encryptation
+     * Hard hash encryptation
      * @param string $encryptedData
      * @return string encrypted
     */
-    private function inverse($encryptedData)
+    private function build($encryptedData)
     {
         $encryptedData = base64_encode($encryptedData);
-        return strrev(str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData)),strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData)))
+        return strrev(str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen(
+            $encryptedData)),strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, 
+            (strlen($encryptedData)/2)-strlen($encryptedData)))
         );
     }
     private function reverse($encryptedData)
     {
         $encryptedData = base64_decode(strrev($encryptedData));
-        return str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData)), strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData))
+        return str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen(
+            $encryptedData)), strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0,
+             (strlen($encryptedData)/2)-strlen($encryptedData))
         );
     }
 

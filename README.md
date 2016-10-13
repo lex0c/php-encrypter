@@ -1,6 +1,6 @@
 ## PHP Encrypter
 
-Generates an encrypted hash of 148 byte for max security of data
+Generates an encrypted hash of 80 byte for max security of data
 
 ```php
 //Construct the Encrypter.
