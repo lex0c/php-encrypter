@@ -11,12 +11,12 @@ $encryption = new Encrypter();
 
 //Generate hash
 $hash = $encryption->generate("Hello World!");
-//output "JDJhJDA4JE56Y3lNakUyTVRnMU4yWmxPREk1Ti5RdFFlbUhDdTJKS0I5SE1BZjlJdlVOMGZId1RSd1d5MjAwMjE4Njk2OTU3ZmU4Mjk0MmEyOWIwLjkyNTgzMTcyMDBhM3gyMDE2ZW5jcnlwdGVk"
+//output "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn"
 
 //or, use variables.
 $data = "Hello World!";
 $hash = $encryption->generate($data);
-//output "JDJhJDA4JE56Y3lNakUyTVRnMU4yWmxPREk1Ti5RdFFlbUhDdTJKS0I5SE1BZjlJdlVOMGZId1RSd1d5MjAwMjE4Njk2OTU3ZmU4Mjk0MmEyOWIwLjkyNTgzMTcyMDBhM3gyMDE2ZW5jcnlwdGVk"
+//output "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn"
 
 
 ```
@@ -27,7 +27,7 @@ Compare if two hashes are equals returning a boolean value
 
 ```php
 //Data comparable - is hash a "Hello World!"
-$hashGenerated = "JDJhJDA4JE56Y3lNakUyTVRnMU4yWmxPREk1Ti5RdFFlbUhDdTJKS0I5SE1BZjlJdlVOMGZId1RSd1d5MjAwMjE4Njk2OTU3ZmU4Mjk0MmEyOWIwLjkyNTgzMTcyMDBhM3gyMDE2ZW5jcnlwdGVk";
+$hashGenerated = "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn";
 $dataComparable = "Welcome";
 
 $equals = $encryption->isEquals($dataComparable, $hashGenerated); //Return false, because "Hello World!" !== "Welcome".
