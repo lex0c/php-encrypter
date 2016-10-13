@@ -30,7 +30,7 @@ Compare if two hashes are equals returning a boolean value
 $hashGenerated = "JDJhJDA4JE56Y3lNakUyTVRnMU4yWmxPREk1Ti5RdFFlbUhDdTJKS0I5SE1BZjlJdlVOMGZId1RSd1d5MjAwMjE4Njk2OTU3ZmU4Mjk0MmEyOWIwLjkyNTgzMTcyMDBhM3gyMDE2ZW5jcnlwdGVk";
 $dataComparable = "Welcome";
 
-$equals = $encryption->isEquals($dataComparable, $hashGenerated); //Return false, because "Hello World!" != "Welcome".
+$equals = $encryption->isEquals($dataComparable, $hashGenerated); //Return false, because "Hello World!" !== "Welcome".
 $equals = $encryption->isEquals("Hello World!", $hashGenerated); //Return true, because "Hello World!" === "Hello World!".
 
 
