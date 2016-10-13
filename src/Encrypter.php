@@ -3,7 +3,7 @@
 /**
  * PHP Encrypter
  * Safety against scripts injections
- * Generates an encrypted hash of 148 byte
+ * Generates an encrypted hash of 80 byte
  * @link https://github.com/lleocastro/php-encrypter
  * @license https://github.com/lleocastro/php-encrypter/blob/master/LICENSE
  * @copyright 2016 Leonardo Carvalho <leonardo_carvalho@outlook.com>
@@ -36,8 +36,8 @@ class Encrypter
      * Secret hash for hard encryption
      * @var string
     */
-    private $secret = '';
-    private $key = '00a3x2016';
+    private $secret = [];
+    private $key = 'rammstein';
 
 
     /**
@@ -54,7 +54,6 @@ class Encrypter
     	$this->prefix = ($p==''?$this->prefix='2a':$this->prefix=$p);
     	$this->salt = ($s==''?$this->salt=$this->generateHash():$this->salt=$s);
         $this->cust = ($c==''?$this->cust='8':$this->cust=$c);
-        $this->secret = uniqid(mt_rand(), true);
     }
 
     /**
@@ -64,12 +63,12 @@ class Encrypter
     */
     public function generate($value)
     {
-        return $this->inverse(
+        return strrev($this->inverse(
             crypt(
-        	    (string) trim(htmlentities($value)), 
+        	    (string) trim(htmlentities(strrev($value))), 
         	    $this->generateHash()
             )
-        );
+        ));
     }
 
     /**
@@ -78,17 +77,17 @@ class Encrypter
      * @param string $hash
      * @return boolean
     */
-	public function isEquals($value, $hash) 
-	{
-		$v = (string) trim(htmlentities($value));
-		$h = $this->reverse((string) trim(htmlentities($hash)));
-
-		if(crypt($v, $h) === $h):
+    public function isEquals($value, $hash) 
+    {
+	    $v = (string) trim(htmlentities(strrev($value)));
+	    $h = $this->reverse((string) trim(htmlentities(strrev($hash))));
+        
+        if(crypt($v, $h) === $h):
             return true;
-		endif;
+        endif;
 
-		return false;
-	}
+        return false;
+    }
 
     /**
      * Generate a random salt
@@ -116,14 +115,14 @@ class Encrypter
     */
     private function inverse($encryptedData)
     {
-        return base64_encode(
-            $encryptedData.$this->secret.$this->key.'encrypted'
+        $encryptedData = base64_encode($encryptedData);
+        return strrev(str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData)),strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData)))
         );
     }
     private function reverse($encryptedData)
     {
-        return substr(base64_decode(
-            $encryptedData), 0, - (strlen($this->secret) + strlen($this->key)) - 9
+        $encryptedData = base64_decode(strrev($encryptedData));
+        return str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData)), strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData))
         );
     }
 
