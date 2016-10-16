@@ -8,7 +8,7 @@ $msgCrypt = new SMCrypter();
 $key = $msgCrypt->keyGenerator();
 var_dump($key);
 
-$en = $msgCrypt->encode($key, 999);
+$en = $msgCrypt->encode($key, 126);
 var_dump($en);
 
 echo "<br>";
