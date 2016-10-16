@@ -1,6 +1,6 @@
 ## PHP Encrypter
 
-Generates an encrypted hash of 80 byte for max security of data
+Generates an encrypted hash of 108 byte for max security of data
 
 ```php
 //Construct the Encrypter.
@@ -11,12 +11,12 @@ $encryption = new Encrypter();
 
 //Generate hash
 $hash = $encryption->generate("Hello World!");
-//output "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn"
+//output "UlaBJjY5VjNZZlRQlFbOdUVupVUTZkQ4xUMCp1UDVTbjhUS0QlRwFjSEpEaKRUQ0oUR1UkWzA3TlxWVwQlbwZUTwUTVaNDZO1EbWNzVXZVM"
 
 //or, use variables.
 $data = "Hello World!";
 $hash = $encryption->generate($data);
-//output "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn"
+//output "UlaBJjY5VjNZZlRQlFbOdUVupVUTZkQ4xUMCp1UDVTbjhUS0QlRwFjSEpEaKRUQ0oUR1UkWzA3TlxWVwQlbwZUTwUTVaNDZO1EbWNzVXZVM
 
 
 ```
@@ -27,7 +27,7 @@ Compare if two hashes are equals returning a boolean value
 
 ```php
 //Data comparable - is hash a "Hello World!"
-$hashGenerated = "QXgvU3hMdW9UcHhJRUl1ckNzV1loY1BFMFJka2hxJDJhJDA4JE1URXhOemcwTXpRMk1qVTNabVprTWVn";
+$hashGenerated = "UlaBJjY5VjNZZlRQlFbOdUVupVUTZkQ4xUMCp1UDVTbjhUS0QlRwFjSEpEaKRUQ0oUR1UkWzA3TlxWVwQlbwZUTwUTVaNDZO1EbWNzVXZVM";
 $dataComparable = "Welcome";
 
 $equals = $encryption->isEquals($dataComparable, $hashGenerated); //Return false, because "Hello World!" !== "Welcome".

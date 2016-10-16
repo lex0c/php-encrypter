@@ -3,7 +3,7 @@
 /**
  * PHP Encrypter
  * Safety against scripts injections
- * Generates an encrypted hash of 80 byte
+ * Generates an encrypted hash of 108 byte
  * @link https://github.com/lleocastro/php-encrypter
  * @license https://github.com/lleocastro/php-encrypter/blob/master/LICENSE
  * @copyright 2016 Leonardo Carvalho <leonardo_carvalho@outlook.com>
@@ -63,7 +63,7 @@ class Encrypter
     */
     public function generate($value)
     {
-        return strrev($this->build(
+        return strrev($this->obscure(
             crypt(
         	    (string) trim(htmlentities(strrev($value))), 
         	    $this->generateHash()
@@ -80,7 +80,7 @@ class Encrypter
     public function isEquals($value, $hash) 
     {
 	    $v = (string) trim(htmlentities(strrev($value)));
-	    $h = $this->reverse((string) trim(htmlentities(strrev($hash))));
+	    $h = $this->illumin((string) trim(htmlentities(strrev($hash))));
         
         if(crypt($v, $h) === $h):
             return true;
@@ -113,21 +113,21 @@ class Encrypter
      * @param string $encryptedData
      * @return string encrypted
     */
-    private function build($encryptedData)
+    protected function obscure($encryptedData)
     {
         $encryptedData = base64_encode($encryptedData);
-        return strrev(str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen(
-            $encryptedData)),strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0, 
-            (strlen($encryptedData)/2)-strlen($encryptedData)))
-        );
+        return base64_encode(strrev(
+            substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData),strlen($encryptedData)).
+            substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData))));
     }
-    private function reverse($encryptedData)
+
+    protected function illumin($encryptedData)
     {
-        $encryptedData = base64_decode(strrev($encryptedData));
-        return str_replace("int()", "", substr($encryptedData, (strlen($encryptedData)/2)-strlen(
-            $encryptedData)), strlen($encryptedData)).str_replace("int()", "", substr($encryptedData, 0,
-             (strlen($encryptedData)/2)-strlen($encryptedData))
-        );
+        $encryptedData = base64_decode($encryptedData);
+        $encryptedData = strrev(
+            substr($encryptedData, (strlen($encryptedData)/2)-strlen($encryptedData),strlen($encryptedData)).
+            substr($encryptedData, 0, (strlen($encryptedData)/2)-strlen($encryptedData)));
+        return base64_decode($encryptedData);
     }
 
 }
