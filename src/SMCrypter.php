@@ -25,29 +25,43 @@ class SMCrypter
         return $this->key;
     }
 
-    public function encode($key='', $value)
+    private function checkKey($key)
+    {
+        if(((is_int($key)) && ($key >= $this->illumin($this->keyValueMin)) && 
+                              ($key <= $this->illumin($this->keyValueMax)))):
+            return $key;
+        elseif((is_string($key)) && ($key != '') && (strlen($key) == 16)):
+            return $this->illumin($key);
+        endif;
+
+        return false;
+    }
+
+    public function encode($key, $value)
     {
         return $this->encrypter(
-            $this->illumin((string) trim(htmlentities(strip_tags($key)))), 
+            (string) trim(htmlentities(strip_tags($this->checkKey($key)))), 
             (int) trim(htmlentities(strip_tags($value)))
         );
     }
 
-    public function decode($key='', $value)
+    public function decode($key, $value)
     {
     	return $this->decrypter(
-    		$this->illumin((string) trim(htmlentities(strip_tags($key)))),
+    	    (string) trim(htmlentities(strip_tags($this->checkKey($key)))),
     	    (int) trim(htmlentities(strip_tags($value)))
     	);
     }
 
     private function encrypter($key='', $value)
     {
+    	$key = (($key=='')?$this->illumin($key):$key);
 	    return ((($value*$key)*$key)/$key);
     }
 
     private function decrypter($key='', $value)
     {
+    	$key = (($key=='')?$this->illumin($key):$key);
 	    return ((($value/$key)/$key)*$key);
     }
 
