@@ -16,7 +16,7 @@ $hash = $encryption->generate("Hello World!");
 //or, use variables.
 $data = "Hello World!";
 $hash = $encryption->generate($data);
-//output "UlaBJjY5VjNZZlRQlFbOdUVupVUTZkQ4xUMCp1UDVTbjhUS0QlRwFjSEpEaKRUQ0oUR1UkWzA3TlxWVwQlbwZUTwUTVaNDZO1EbWNzVXZVM
+//output "UlaBJjY5VjNZZlRQlFbOdUVupVUTZkQ4xUMCp1UDVTbjhUS0QlRwFjSEpEaKRUQ0oUR1UkWzA3TlxWVwQlbwZUTwUTVaNDZO1EbWNzVXZVM";
 
 
 ```
